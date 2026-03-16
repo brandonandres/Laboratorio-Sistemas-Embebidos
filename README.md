@@ -42,3 +42,28 @@ Los displays permiten visualizar el resultado de las conversiones de manera clar
 
 Metodología y realización:
 
+Punto 2 – Sistema de iluminación y monitoreo de temperatura mediante chatbot 
+
+En el segundo punto se presenta un sistema de control básico que integra Arduino, sensores y un chatbot conversacional para interactuar con el usuario en este caso integrado con DeepSeek. 
+
+En este sistema, el chatbot se ejecuta en el computador y se comunica con el Arduino a través de comunicación serial. El usuario puede enviar comandos por texto o voz, los cuales son interpretados por el chatbot y convertidos en instrucciones para el microcontrolador. 
+
+El sistema permite realizar dos funciones principales: 
+
+Control de iluminación: encender o apagar dos LEDs (rojo y verde) mediante comandos del chatbot. 
+Monitoreo de temperatura: cuando el usuario solicita la temperatura, el Arduino lee los datos de un sensor y envía la información al chatbot para mostrarla al usuario. 
+Este modelo introduce conceptos importantes como interfaces conversacionales, adquisición de datos de sensores y control de actuadores mediante comunicación serial. 
+
+Metodología y realización: 
+
+Para el desarrollo de este ejercicio se implementó un sistema de control mediante reconocimiento de voz utilizando el lenguaje de programación Python y una interfaz desarrollada con Streamlit, la cual permite controlar dispositivos conectados a un microcontrolador Arduino. 
+
+Inicialmente se configuró la interfaz del programa para permitir la interacción entre el usuario y el sistema mediante el uso del micrófono del computador. Para esto se utilizó la librería streamlit_mic_recorder, la cual permite capturar la voz del usuario y convertirla en texto. Una vez obtenido el texto, el programa analiza las palabras clave para identificar la acción que el usuario desea realizar. 
+
+Posteriormente se estableció una comunicación serial entre el computador y el microcontrolador Arduino utilizando la librería pyserial, a través del puerto COM5 y a una velocidad de 9600 baudios. En el Arduino se programó un código mediante Arduino IDE, donde se configuran los pines 8 y 9 como salidas para controlar un LED rojo y un LED verde. El programa del microcontrolador recibe comandos enviados desde Python por medio del puerto serial y, dependiendo del comando recibido, utiliza la función digitalWrite para encender o apagar los LEDs. 
+
+Cuando el sistema detecta comandos relacionados con el encendido o apagado de luces, como por ejemplo “enciende rojo”, “apaga rojo”, “enciende verde” o “apaga verde”, el programa envía instrucciones específicas al Arduino como ROJO_ON, ROJO_OFF, VERDE_ON o VERDE_OFF, activando o desactivando los LEDs conectados al circuito electrónico. 
+
+Además, el sistema incluye un módulo de síntesis de voz utilizando la librería gTTS, el cual permite que el chatbot genere respuestas habladas para confirmar las acciones ejecutadas. También se puede realizar la consulta de la temperatura, enviando el comando TEMP al Arduino y mostrando la respuesta obtenida en la interfaz. 
+
+En caso de que el comando de voz no corresponda a una acción de control del Arduino, el sistema envía la consulta a un modelo de inteligencia artificial mediante una API externa (DeepSeek Chat), generando una respuesta automática que es mostrada y reproducida en la interfaz. De esta manera, el sistema integra reconocimiento de voz, comunicación con hardware e inteligencia artificial, permitiendo controlar dispositivos físicos mediante lenguaje natural 
