@@ -81,3 +81,87 @@ Cuando el sistema detecta comandos relacionados con el encendido o apagado de lu
 Además, el sistema incluye un módulo de síntesis de voz utilizando la librería gTTS, el cual permite que el chatbot genere respuestas habladas para confirmar las acciones ejecutadas. También se puede realizar la consulta de la temperatura, enviando el comando TEMP al Arduino y mostrando la respuesta obtenida en la interfaz. 
 
 En caso de que el comando de voz no corresponda a una acción de control del Arduino, el sistema envía la consulta a un modelo de inteligencia artificial mediante una API externa (DeepSeek Chat), generando una respuesta automática que es mostrada y reproducida en la interfaz. De esta manera, el sistema integra reconocimiento de voz, comunicación con hardware e inteligencia artificial, permitiendo controlar dispositivos físicos mediante lenguaje natural 
+
+
+
+Pruebas de Laboratorio y Componentes: 
+
+Para el desarrollo y validación de este proyecto, se realizaron pruebas físicas utilizando el siguiente hardware y software: 
+
+  
+
+Hardware Utilizado 
+
+Microcontrolador: Arduino UNO. 
+
+Sensores: Sensor de temperatura (ej. LM35 o DHT11). 
+
+Actuadores: LEDs indicadores (Rojo y Verde). 
+
+Componentes Pasivos: Resistencias (220Ω), Protoboard y Jumpers de conexión. 
+
+  
+
+Entorno de Software y APIs 
+
+IA Generativa: API Key de DeepSeek (Chatbot). 
+
+IDE/Editores: Visual Studio Code y Arduino IDE. 
+
+Lenguajes: Python (para la lógica de integración y procesamiento de voz). 
+
+  
+
+Escenarios de Prueba 
+
+El sistema fue sometido a tres metodologías de validación para garantizar la robustez de la integración: 
+
+Modo Texto: Interacción exclusiva mediante consola/chat escrito. 
+
+Modo Voz: Interacción mediante reconocimiento de voz (Speech-to-Text). 
+
+Modo Híbrido: Funcionamiento simultáneo donde el sistema responde correctamente independientemente del canal de entrada elegido por el usuario. 
+
+Se adjunta un video de las pruebas realizadas en el que se muestra el correcto funcionamiento del ejercicio propuesto. 
+
+Código Usado en Arduino IDE: 
+
+código_arduino.ino 
+
+Código usado en Visual Studio Code: 
+
+app_punto_2.py 
+
+Procesos realizados y librerías descargadas para su uso en el punto: 
+
+LÉAME N° 2 
+
+Punto 3 – Sistema de reconocimiento en el aula con OpenCV, Arduino y PIC 
+
+El punto 3 describe la arquitectura general del sistema final, en el cual se integran visión artificial, procesamiento conversacional y control de hardware. 
+
+En este escenario, la cámara de la computadora captura imágenes del entorno y utiliza OpenCV en Python para detectar y clasificar objetos simples, como colores o figuras geométricas. Esta información es procesada por el sistema y puede ser consultada por los usuarios a través del chatbot. 
+
+El flujo de funcionamiento del sistema es el siguiente: 
+
+La cámara de la PC detecta y clasifica objetos mediante OpenCV. 
+
+El chatbot procesa las preguntas realizadas por los estudiantes. 
+
+Arduino actúa como puente de comunicación entre la computadora y el microcontrolador. 
+
+El PIC16F887 recibe comandos y ejecuta acciones físicas, como activar LEDs indicadores. 
+
+Este enfoque demuestra cómo es posible integrar visión artificial, sistemas embebidos y procesamiento conversacional para desarrollar aplicaciones interactivas dentro de un entorno educativo. 
+
+Metodología y realización: 
+
+En el tercer ejercicio se desarrolló un sistema de visión artificial capaz de detectar colores en tiempo real utilizando la cámara del computador y controlar dispositivos conectados a un Arduino. 
+
+El programa fue desarrollado en Python utilizando la librería OpenCV, la cual permite el procesamiento de imágenes y video. Inicialmente se activó la cámara del computador para capturar imágenes continuamente mediante VideoCapture(0). Cada imagen capturada fue convertida al espacio de color HSV (Hue, Saturation, Value), ya que este modelo facilita la identificación de colores dentro de una imagen. Posteriormente se definieron rangos de valores HSV específicos para los colores rojo y verde, generando máscaras que permiten identificar las regiones donde se encuentran estos colores. 
+
+El sistema analiza cada cuadro de video y utiliza técnicas de detección de contornos para identificar objetos que tengan un tamaño significativo dentro de la imagen, evitando así errores causados por ruido visual. Cuando se detecta un objeto rojo o verde, el programa dibuja un contorno alrededor del objeto y muestra una etiqueta indicando el color detectado en la ventana de visualización. 
+
+Además, el programa establece una comunicación serial con Arduino mediante el puerto COM5 a una velocidad de 9600 baudios, utilizando la librería serial. Dependiendo del color detectado, el sistema envía comandos específicos al microcontrolador como ROJO_ON, ROJO_OFF, VERDE_ON o VERDE_OFF, los cuales son interpretados por el código programado en Arduino IDE. Este código recibe los comandos desde el puerto serial y utiliza la función digitalWrite para enviar señales HIGH o LOW a los pines 8 y 9, donde se encuentran conectados un LED rojo y un LED verde, permitiendo encenderlos o apagarlos según la instrucción recibida. 
+
+De esta manera, el sistema integra visión artificial, procesamiento de imágenes y comunicación con hardware, permitiendo controlar dispositivos electrónicos a partir de la información visual capturada por la cámara en tiempo real. 
