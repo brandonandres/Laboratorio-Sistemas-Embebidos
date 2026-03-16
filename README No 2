@@ -1,0 +1,21 @@
+# =========================
+    # Crear entonrno virtual - py -m venv venv
+# =========================
+
+# =========================
+    # Activar entonrno virtual - venv\Scripts\activate
+# =========================
+
+# =========================
+    # Descargar Librerias en entonrno virtual: 
+
+    # pip install streamlit
+    # pip install pyserial
+    # pip install gtts
+    # pip install requests
+    # pip install streamlit-mic-recorder
+# =========================
+
+# =========================
+    # Ejcutar Chat Bot - streamlit run app.py
+# =========================
