@@ -89,25 +89,25 @@ Pruebas de Laboratorio y Componentes:
 Para el desarrollo y validación de este proyecto, se realizaron pruebas físicas utilizando el siguiente hardware y software: 
   
 
-Hardware Utilizado 
+- Hardware Utilizado 
 
-Microcontrolador: Arduino UNO. 
+- Microcontrolador: Arduino UNO. 
 
-Sensores: Sensor de temperatura (ej. LM35 o DHT11). 
+- Sensores: Sensor de temperatura (ej. LM35 o DHT11). 
 
-Actuadores: LEDs indicadores (Rojo y Verde). 
+- Actuadores: LEDs indicadores (Rojo y Verde). 
 
-Componentes Pasivos: Resistencias (220Ω), Protoboard y Jumpers de conexión. 
+- Componentes Pasivos: Resistencias (220Ω), Protoboard y Jumpers de conexión. 
 
   
 
 Entorno de Software y APIs 
 
-IA Generativa: API Key de DeepSeek (Chatbot). 
+- IA Generativa: API Key de DeepSeek (Chatbot). 
 
-IDE/Editores: Visual Studio Code y Arduino IDE. 
+- IDE/Editores: Visual Studio Code y Arduino IDE. 
 
-Lenguajes: Python (para la lógica de integración y procesamiento de voz). 
+- Lenguajes: Python (para la lógica de integración y procesamiento de voz). 
 
   
 
@@ -115,23 +115,23 @@ Escenarios de Prueba
 
 El sistema fue sometido a tres metodologías de validación para garantizar la robustez de la integración: 
 
-Modo Texto: Interacción exclusiva mediante consola/chat escrito. 
+- Modo Texto: Interacción exclusiva mediante consola/chat escrito. 
 
-Modo Voz: Interacción mediante reconocimiento de voz (Speech-to-Text). 
+- Modo Voz: Interacción mediante reconocimiento de voz (Speech-to-Text). 
 
-Modo Híbrido: Funcionamiento simultáneo donde el sistema responde correctamente independientemente del canal de entrada elegido por el usuario. 
+- Modo Híbrido: Funcionamiento simultáneo donde el sistema responde correctamente independientemente del canal de entrada elegido por el usuario. 
 
 Se adjunta un video de las pruebas realizadas en el que se muestra el correcto funcionamiento del ejercicio propuesto. 
 
-Código Usado en Arduino IDE: 
+- Código Usado en Arduino IDE: 
 
 código_arduino.ino 
 
-Código usado en Visual Studio Code: 
+- Código usado en Visual Studio Code: 
 
 app_punto_2.py 
 
-Procesos realizados y librerías descargadas para su uso en el punto: 
+- Procesos realizados y librerías descargadas para su uso en el punto: 
 
 LÉAME N° 2 
 
@@ -143,15 +143,15 @@ En este escenario, la cámara de la computadora captura imágenes del entorno y 
 
 El flujo de funcionamiento del sistema es el siguiente: 
 
-La cámara de la PC detecta y clasifica objetos mediante OpenCV. 
+- La cámara de la PC detecta y clasifica objetos mediante OpenCV. 
 
-El chatbot procesa las preguntas realizadas por los estudiantes. 
+- El chatbot procesa las preguntas realizadas por los estudiantes. 
 
-Arduino actúa como puente de comunicación entre la computadora y el microcontrolador. 
+- Arduino actúa como puente de comunicación entre la computadora y el microcontrolador. 
 
-El PIC16F887 recibe comandos y ejecuta acciones físicas, como activar LEDs indicadores. 
+- El PIC16F887 recibe comandos y ejecuta acciones físicas, como activar LEDs indicadores. 
 
-Este enfoque demuestra cómo es posible integrar visión artificial, sistemas embebidos y procesamiento conversacional para desarrollar aplicaciones interactivas dentro de un entorno educativo. 
+- Este enfoque demuestra cómo es posible integrar visión artificial, sistemas embebidos y procesamiento conversacional para desarrollar aplicaciones interactivas dentro de un entorno educativo. 
 
 Metodología y realización: 
 
@@ -171,14 +171,14 @@ Para el desarrollo y validación de este proyecto, se realizaron pruebas física
 
 1. Configuración del Entorno (Setup) 
 
-Hardware: Arduino UNO conectado por USB a la PC. 
-Circuito: * LED Rojo en Pin 13 (con resistencia de 220Ω). 
-LED Verde en Pin 12 (con resistencia de 220Ω). 
-Software: Script de Python activo con comunicación serial a 9600 baudios. 
+- Hardware: Arduino UNO conectado por USB a la PC. 
+- Circuito: * LED Rojo en Pin 13 (con resistencia de 220Ω). 
+- LED Verde en Pin 12 (con resistencia de 220Ω). 
+- Software: Script de Python activo con comunicación serial a 9600 baudios. 
  
 2. Pruebas Unitarias e Integradas 
 
-Paso 01 
+- Paso 01 
 
 Acción del Usuario: Mostrar objeto Rojo 
 
@@ -191,7 +191,7 @@ Resultado Esperado:
 - LED Rojo ON, Verde OFF. 
 - En la cámara se marca y se escribe la palabra “Rojo”  
 
-Paso 02 
+- Paso 02 
 
 Acción del Usuario: Mostrar objeto Verde 
 
@@ -203,7 +203,7 @@ Resultado Esperado:
 - LED Verde ON, Rojo OFF. 
 - En la cámara se marca y se escribe la palabra “Verde” 
 
-Paso 03 
+- Paso 03 
 
 Acción del Usuario: Sin objetos en cámara 
 
@@ -228,11 +228,11 @@ Filtrado Morfológico: Aplicación de operaciones de Erosión y Dilatación para
 Cálculo de Áreas: Solo se envía el comando al Arduino si el área del contorno detectado supera los 500 px², evitando activaciones accidentales. 
 
 
-Código Usado en Arduino IDE: 
+- Código Usado en Arduino IDE: 
 
 código_arduino_punto_3.ino 
 
-Código usado en Visual Studio Code: 
+- Código usado en Visual Studio Code: 
 
 visión.py 
 
