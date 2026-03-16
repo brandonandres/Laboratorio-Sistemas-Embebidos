@@ -87,7 +87,6 @@ En caso de que el comando de voz no corresponda a una acción de control del Ard
 Pruebas de Laboratorio y Componentes: 
 
 Para el desarrollo y validación de este proyecto, se realizaron pruebas físicas utilizando el siguiente hardware y software: 
-
   
 
 Hardware Utilizado 
@@ -177,53 +176,44 @@ Circuito: * LED Rojo en Pin 13 (con resistencia de 220Ω).
 LED Verde en Pin 12 (con resistencia de 220Ω). 
 Software: Script de Python activo con comunicación serial a 9600 baudios. 
  
-2. Tabla de Pruebas Unitarias e Integradas 
+2. Pruebas Unitarias e Integradas 
 
-Paso 
+Paso 01 
 
-Acción del Usuario 
+Acción del Usuario: Mostrar objeto Rojo 
 
-Proceso en Python (OpenCV) 
+Proceso en Python (OpenCV): Genera máscara roja y envía 'R' por Serial. 
 
-Respuesta de Arduino 
+Respuesta de Arduino: Detecta 'R' en el buffer serial. 
 
-Resultado Esperado 
+Resultado Esperado: 
 
-01 
+- LED Rojo ON, Verde OFF. 
+- En la cámara se marca y se escribe la palabra “Rojo”  
 
-Mostrar objeto Rojo 
+Paso 02 
 
-Genera máscara roja y envía 'R' por Serial. 
+Acción del Usuario: Mostrar objeto Verde 
 
-Detecta 'R' en el buffer serial. 
+Proceso en Python (OpenCV): Genera máscara verde y envía 'G' por Serial. 
 
-LED Rojo ON, Verde OFF. 
+Respuesta de Arduino: Detecta 'G' en el buffer serial. 
 
-En la cámara se marca y se escribe la palabra “Rojo”  
+Resultado Esperado:
+- LED Verde ON, Rojo OFF. 
+- En la cámara se marca y se escribe la palabra “Verde” 
 
-02 
+Paso 03 
 
-Mostrar objeto Verde 
+Acción del Usuario: Sin objetos en cámara 
 
-Genera máscara verde y envía 'G' por Serial. 
+Proceso en Python (OpenCV): Envía 'X' o limpia el buffer. 
 
-Detecta 'G' en el buffer serial. 
+Respuesta de Arduino: Apaga todas las salidas digitales. 
 
-LED Verde ON, Rojo OFF. 
-
-En la cámara se marca y se escribe la palabra “Verde” 
-
-03 
-
-Sin objetos en cámara 
-
-Envía 'X' o limpia el buffer. 
-
-Apaga todas las salidas digitales. 
-
-LEDs OFF. 
-
-No se muestra escrito nada en pantalla 
+Resultado Esperado:
+- LEDs OFF. 
+- No se muestra escrito nada en pantalla 
 
  
 
@@ -245,3 +235,21 @@ código_arduino_punto_3.ino
 Código usado en Visual Studio Code: 
 
 visión.py 
+
+
+Conclusiones y recomendaciones de la práctica
+
+Punto 1 – Conversor de sistemas numéricos con PIC16F887
+
+Este ejercicio permitió comprender de forma práctica la relación entre los diferentes sistemas de numeración utilizados en electrónica y computación, particularmente las conversiones entre binario, octal, decimal y hexadecimal. La implementación mediante el microcontrolador PIC16F887 y la visualización en displays de siete segmentos facilitó observar cómo un sistema digital puede interpretar entradas binarias y transformarlas en información comprensible para el usuario.
+Como recomendación, es importante realizar previamente el diseño lógico del sistema y la tabla de conversión antes de programar el microcontrolador, ya que esto simplifica el desarrollo del código y reduce posibles errores en la interpretación de los datos de entrada. Este tipo de ejercicios fortalece el entendimiento de sistemas digitales y programación de microcontroladores.
+
+Punto 2 – Sistema de iluminación y monitoreo de temperatura con chatbot
+
+En este ejercicio se desarrolló un sistema interactivo que integra hardware y software, permitiendo controlar dispositivos electrónicos mediante un chatbot conectado a Arduino a través de comunicación serial. Además del control de LEDs, el sistema incorpora un sensor de temperatura, lo que demuestra cómo los microcontroladores pueden utilizarse para adquirir datos del entorno y responder a solicitudes del usuario.
+Una recomendación importante para este tipo de proyectos es mantener una estructura clara en la comunicación serial, definiendo comandos específicos que faciliten la interpretación entre el programa en Python y el Arduino. Este enfoque mejora la estabilidad del sistema y facilita futuras ampliaciones del proyecto, como agregar más sensores o actuadores.
+
+Punto 3 – Sistema de reconocimiento con OpenCV, Arduino y PIC
+
+El tercer ejercicio representó la integración más completa de la práctica, combinando visión artificial, procesamiento de lenguaje mediante chatbot y control de hardware con microcontroladores. Mediante el uso de OpenCV en Python, el sistema puede identificar objetos o características simples del entorno, mientras que el chatbot permite realizar consultas de forma interactiva. Finalmente, el PIC16F887 ejecuta acciones físicas como respuesta a los comandos generados por el sistema.
+Este tipo de implementación demuestra el potencial de combinar inteligencia artificial básica con sistemas embebidos, creando aplicaciones capaces de interactuar con el entorno y con los usuarios. Como recomendación, es fundamental diseñar correctamente la arquitectura de comunicación entre los diferentes dispositivos, ya que una buena organización entre el software de alto nivel (Python) y el hardware (Arduino y PIC) garantiza un funcionamiento más eficiente y escalable del sistema.
