@@ -89,7 +89,7 @@ Pruebas de Laboratorio y Componentes:
 Para el desarrollo y validación de este proyecto, se realizaron pruebas físicas utilizando el siguiente hardware y software: 
   
 
-- Hardware Utilizado 
+Hardware Utilizado 
 
 - Microcontrolador: Arduino UNO. 
 
