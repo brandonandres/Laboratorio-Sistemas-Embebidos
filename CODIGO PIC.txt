@@ -1,0 +1,128 @@
+// Librería principal del compilador XC8
+// Permite acceder a los registros internos del PIC
+#include <xc.h>
+
+// Definición de la frecuencia del cristal del microcontrolador
+// En este caso el reloj es de 4 MHz
+// Esto se usa para funciones de tiempo como __delay_ms()
+#define _XTAL_FREQ 4000000
+
+
+// CONFIGURACIÓN DE FUSES DEL PIC
+// Estas instrucciones configuran el comportamiento del hardware interno
+// antes de que el programa empiece a ejecutarse
+
+#pragma config FOSC = HS      // Oscilador externo de alta velocidad (cristal)
+#pragma config WDTE = OFF     // Desactiva el Watchdog Timer (evita reinicios automáticos)
+#pragma config PWRTE = ON     // Activa temporizador de encendido para estabilizar voltaje
+#pragma config BOREN = ON     // Activa Brown Out Reset (reinicio si baja el voltaje)
+#pragma config LVP = OFF      // Desactiva programación en bajo voltaje
+#pragma config CPD = OFF      // No protege la memoria de datos
+#pragma config WRT = OFF      // No protege contra escritura en memoria
+#pragma config CP = OFF       // No protege el código del programa
+
+
+// TABLA PARA MOSTRAR NÚMEROS EN DISPLAY DE 7 SEGMENTOS
+// Cada valor hexadecimal representa qué segmentos deben encenderse
+// para formar un número en un display de cátodo común
+
+const char tabla[10] = {
+
+0x3F, // 0 → enciende segmentos A B C D E F
+0x06, // 1 → enciende segmentos B C
+0x5B, // 2 → enciende A B D E G
+0x4F, // 3 → enciende A B C D G
+0x66, // 4 → enciende B C F G
+0x6D, // 5 → enciende A C D F G
+0x7D, // 6 → enciende A C D E F G
+0x07, // 7 → enciende A B C
+0x7F, // 8 → enciende todos los segmentos
+0x6F  // 9 → enciende A B C D F G
+
+};
+
+
+// FUNCIÓN PRINCIPAL DEL PROGRAMA
+void main() {
+
+
+// DESACTIVAR FUNCIONES ANALÓGICAS
+// Los pines del PORTA pueden funcionar como entradas analógicas
+// pero en este proyecto se usarán como entradas digitales
+
+ANSEL = 0;   // Desactiva entradas analógicas en PORTA
+ANSELH = 0;  // Desactiva entradas analógicas en otros pines
+
+
+// CONFIGURACIÓN DE DIRECCIÓN DE PUERTOS
+
+TRISA = 0x0F; 
+// 00001111
+// RA0 RA1 RA2 RA3 configurados como ENTRADAS
+// Aquí se conectan los switches DIP
+
+TRISC = 0x00; 
+// Todos los pines del PORTC como SALIDA
+// Este puerto controla el display de DECENAS
+
+TRISD = 0x00; 
+// Todos los pines del PORTD como SALIDA
+// Este puerto controla el display de UNIDADES
+
+
+// INICIALIZACIÓN DE LOS PUERTOS
+// Se apagan todos los segmentos de los displays al inicio
+
+PORTC = 0;
+PORTD = 0;
+
+
+// BUCLE PRINCIPAL
+// while(1) significa que el programa se ejecuta continuamente
+
+while(1){
+
+
+// VARIABLES LOCALES
+// unsigned char = número entero de 8 bits sin signo
+
+unsigned char binario;   // almacenará el valor leído del DIP switch
+unsigned char decenas;   // almacenará la parte de decenas del número
+unsigned char unidades;  // almacenará la parte de unidades
+
+
+// LECTURA DEL PUERTO A
+// Se leen solo los primeros 4 bits (RA0–RA3)
+
+binario = PORTA & 0x0F; 
+
+// "& 0x0F" es una operación AND
+// Sirve para ignorar los otros bits del puerto
+// Solo deja pasar los bits 0 1 2 3
+
+
+// CONVERSIÓN DEL NÚMERO BINARIO A DECIMAL
+
+decenas = binario / 10;  
+// División entera
+// Obtiene el número de decenas
+
+unidades = binario % 10; 
+// Operador módulo
+// Obtiene el residuo de la división
+// Es decir, el número de unidades
+
+
+// MOSTRAR RESULTADO EN LOS DISPLAYS
+
+PORTC = tabla[decenas];  
+// Busca en la tabla el patrón del número de decenas
+// y lo envía al display conectado al PORTC
+
+PORTD = tabla[unidades]; 
+// Busca en la tabla el patrón del número de unidades
+// y lo envía al display conectado al PORTD
+
+}
+
+}
