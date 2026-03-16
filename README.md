@@ -12,23 +12,37 @@ El sistema propuesto permite detectar y clasificar objetos simples mediante visi
 Durante la práctica se desarrollan los siguientes objetivos:
 
 •	Programar visión artificial con OpenCV en Python para detección y clasificación básica.
+
 •	Implementar comunicación serial entre PC (Python), Arduino y PIC.
+
 •	Programar el PIC16F887 en lenguaje C para controlar actuadores basados en comandos recibidos.
+
 •	Desarrollar un chatbot simple que interprete preguntas sobre los objetos detectados.
+
 •	Integrar diversas tecnologías en un sistema funcional de monitoreo y control.
 
 Materiales que se utilizarán en los distintos puntos:
 Los siguientes son los componentes de hardware necesarios para implementar los sistemas que se describirán en la práctica.
 Entre los elementos principales se encuentran:
+
 •	Placa Arduino (UNO, Nano o similar) utilizada como interfaz de comunicación entre la computadora y los dispositivos electrónicos.
+
 •	PIC16F887.
+
 •	Sensor de temperatura (LM35, DHT11 o TMP36) encargado de medir la temperatura del entorno.
+
 •	LEDs con resistencias que funcionan como actuadores visuales del sistema.
+
 •	Displays de siete segmentos.
+
 •	Resistencias.
+
 •	Capacitores.
+
 •	Cristal de cuarzo.
+
 •	Protoboard y cables de conexión para el montaje del circuito.
+
 •	Computadora con Visual estudio Code, Arduino IDE y Python, incluyendo librerías como pyserial para la comunicación serial y speech_recognition para el procesamiento de voz.
 
 Las siguientes secciones describen los diferentes módulos del sistema representados en el proyecto:
