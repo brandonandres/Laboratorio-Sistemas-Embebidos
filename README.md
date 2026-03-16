@@ -54,7 +54,7 @@ En el montaje se utilizan cuatro entradas digitales (A, B, C y D) que representa
 El microcontrolador recibe estos valores, ejecuta el proceso de conversión numérica mediante programación en lenguaje C y posteriormente envía el resultado hacia displays de siete segmentos.
 Los displays permiten visualizar el resultado de las conversiones de manera clara para el usuario. Este módulo tiene como propósito reforzar el manejo de sistemas de numeración, lógica digital y programación de microcontroladores, además de mostrar la interacción entre hardware y software en sistemas embebidos.
 
-Metodología y realización:
+Metodología y realización: (Pendiente)
 
 Punto 2 – Sistema de iluminación y monitoreo de temperatura mediante chatbot 
 
