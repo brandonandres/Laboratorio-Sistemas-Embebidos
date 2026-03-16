@@ -165,3 +165,83 @@ El sistema analiza cada cuadro de video y utiliza técnicas de detección de con
 Además, el programa establece una comunicación serial con Arduino mediante el puerto COM5 a una velocidad de 9600 baudios, utilizando la librería serial. Dependiendo del color detectado, el sistema envía comandos específicos al microcontrolador como ROJO_ON, ROJO_OFF, VERDE_ON o VERDE_OFF, los cuales son interpretados por el código programado en Arduino IDE. Este código recibe los comandos desde el puerto serial y utiliza la función digitalWrite para enviar señales HIGH o LOW a los pines 8 y 9, donde se encuentran conectados un LED rojo y un LED verde, permitiendo encenderlos o apagarlos según la instrucción recibida. 
 
 De esta manera, el sistema integra visión artificial, procesamiento de imágenes y comunicación con hardware, permitiendo controlar dispositivos electrónicos a partir de la información visual capturada por la cámara en tiempo real. 
+
+Pruebas de Laboratorio y Componentes: 
+
+Para el desarrollo y validación de este proyecto, se realizaron pruebas físicas validando la integración entre la visión artificial (OpenCV) y el control de hardware directo mediante Arduino. 
+
+1. Configuración del Entorno (Setup) 
+
+Hardware: Arduino UNO conectado por USB a la PC. 
+Circuito: * LED Rojo en Pin 13 (con resistencia de 220Ω). 
+LED Verde en Pin 12 (con resistencia de 220Ω). 
+Software: Script de Python activo con comunicación serial a 9600 baudios. 
+ 
+2. Tabla de Pruebas Unitarias e Integradas 
+
+Paso 
+
+Acción del Usuario 
+
+Proceso en Python (OpenCV) 
+
+Respuesta de Arduino 
+
+Resultado Esperado 
+
+01 
+
+Mostrar objeto Rojo 
+
+Genera máscara roja y envía 'R' por Serial. 
+
+Detecta 'R' en el buffer serial. 
+
+LED Rojo ON, Verde OFF. 
+
+En la cámara se marca y se escribe la palabra “Rojo”  
+
+02 
+
+Mostrar objeto Verde 
+
+Genera máscara verde y envía 'G' por Serial. 
+
+Detecta 'G' en el buffer serial. 
+
+LED Verde ON, Rojo OFF. 
+
+En la cámara se marca y se escribe la palabra “Verde” 
+
+03 
+
+Sin objetos en cámara 
+
+Envía 'X' o limpia el buffer. 
+
+Apaga todas las salidas digitales. 
+
+LEDs OFF. 
+
+No se muestra escrito nada en pantalla 
+
+ 
+
+3. Pipeline de Procesamiento de Imagen 
+
+Para asegurar la precisión, el script de Python realiza las siguientes transformaciones matemáticas y de filtrado: 
+
+Espacio de Color: Conversión de RGB a HSV, permitiendo que la detección sea inmune a sombras leves. 
+Umbralización (Thresholding): * $Mask_{rojo} = (H \in [0, 10] \cup [170, 180])$ 
+$Mask_{verde} = (H \in [35, 85])$ 
+Filtrado Morfológico: Aplicación de operaciones de Erosión y Dilatación para eliminar ruido (puntos pequeños aleatorios). 
+Cálculo de Áreas: Solo se envía el comando al Arduino si el área del contorno detectado supera los 500 px², evitando activaciones accidentales. 
+
+
+Código Usado en Arduino IDE: 
+
+código_arduino_punto_3.ino 
+
+Código usado en Visual Studio Code: 
+
+visión.py 
