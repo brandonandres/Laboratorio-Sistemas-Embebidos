@@ -239,6 +239,7 @@ visión.py
 
 
 
+
 - Conclusiones y recomendaciones de la práctica
 
 Punto 1 – Conversor de sistemas numéricos con PIC16F887
